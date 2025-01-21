@@ -22,7 +22,7 @@ const Page = async () => {
                     </li>
                     <li>Some Features may not be there. They will rolled out in future.</li>
                 </ul>
-                <div className="w-[60vw] mx-auto my-5 space-y-4">
+                <div className="w-[90vw] md:w-[60vw] mx-auto my-5 space-y-4">
                     <TextEditor></TextEditor>
                 </div>
             </>}
