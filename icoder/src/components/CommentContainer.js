@@ -8,7 +8,8 @@ const CommentContainer = ({postId}) => {
         queryKey: ["comments"],
         queryFn: async () => {
             const res = await fetch(`http://localhost:3000/api/fetch-comment/${postId}`);
-            const data = await res.json();
+            let data;
+            data = await res.json();
             return data;
         },
     });

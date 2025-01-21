@@ -25,3 +25,5 @@ export async function fetchPosts() {
     const allPosts = await Post.find({}).sort({ createdAt: -1 });
     return allPosts;
 }
+
+
