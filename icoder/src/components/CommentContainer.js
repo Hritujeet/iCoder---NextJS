@@ -7,7 +7,7 @@ const CommentContainer = ({postId}) => {
     const { isLoading, error, data } = useQuery({
         queryKey: ["comments"],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:3000/api/fetch-comment/${postId}`);
+            const res = await fetch(`/api/fetch-comment/${postId}`);
             let data;
             data = await res.json();
             return data;
