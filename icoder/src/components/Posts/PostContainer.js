@@ -2,7 +2,7 @@
 import React from "react";
 import {useQuery} from "@tanstack/react-query";
 import {Skeleton} from "@/components/ui/skeleton";
-import PostCard from "@/components/ui/PostCard";
+import PostCard from "@/components/Posts/PostCard";
 
 const PostContainer = () => {
     const {data, isLoading} = useQuery({
