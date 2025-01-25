@@ -1,6 +1,6 @@
 // app/page.jsx
-import Featured from "@/components/Featured";
-import Hero from "@/components/Hero";
+import Featured from "@/components/Home/Featured";
+import Hero from "@/components/Home/Hero";
 import {auth} from "@clerk/nextjs/server";
 import {Button} from "@/components/ui/button";
 import Link from "next/link";
@@ -26,3 +26,9 @@ export default async function Home() {
         </div>
     );
 }
+
+export const metadata = {
+    title: "Home | iCoder",
+    description:
+        " iCoder is a blog platform built exclusively for programmers to share their knowledge and explore the world of coding. Whether you're learning or teaching, iCoder provides the perfect space to write and read blogs on programming languages, frameworks, tools, and the latest tech trends. Join the ultimate community of coders and turn your passion for coding into insightful content.",
+};

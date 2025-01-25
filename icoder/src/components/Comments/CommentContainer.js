@@ -2,6 +2,7 @@
 import React from "react";
 import CommentCard from "./CommentCard";
 import { useQuery } from "@tanstack/react-query";
+import {Skeleton} from "@/components/ui/skeleton";
 
 const CommentContainer = ({postId}) => {
     const { isLoading, error, data } = useQuery({
@@ -16,9 +17,9 @@ const CommentContainer = ({postId}) => {
     
     if (isLoading) {
         return (
-            <p className="text-lg font-semibold text-zinc-400">
-                Loading...
-            </p>
+            <div className="flex flex-col space-y-3">
+                <Skeleton className="h-14 w-full rounded-xl"/>
+            </div>
         );
     }
 

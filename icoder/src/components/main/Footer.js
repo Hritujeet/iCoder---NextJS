@@ -10,7 +10,7 @@ const Footer = () => {
             <div className="navigation text-base md:text-lg">
                 <ul className="flex gap-4 list-none justify-center items-center">
                     <li className="hover:text-zinc-800 duration-150 border-b-2 py-1 border-transparent hover:border-zinc-600">
-                        <Link href={"/"}>Home</Link>
+                        <Link href={"/public"}>Home</Link>
                     </li>
                     <li className="hover:text-zinc-800 duration-150 border-b-2 py-1 border-transparent hover:border-zinc-600">
                         <Link href={"/blogs"}>Blogs</Link>

@@ -1,6 +1,6 @@
 "use client";
 import React, { useRef, useState } from "react";
-import { Button } from "./ui/button";
+import { Button } from "../ui/button";
 import {
     Bold,
     Heading,
@@ -21,17 +21,20 @@ import {
 import { toast } from "react-toastify";
 import { createPost } from "@/actions/post.actions";
 import { useUser } from "@clerk/nextjs";
-import { Input } from "./ui/input";
+import { Input } from "../ui/input";
+import LoadingSpinner from "@/components/main/LoadingSpinner";
 
 const RichTextEditor = () => {
     const editorRef = useRef();
     const [title, settitle] = useState("")
+    const [loading, setLoading] = useState(false)
     const {user} = useUser();
 
     const execCommand = (command, value = null) => {
         document.execCommand(command, false, value);
     };
     const handleCreate = async () => {
+        setLoading(true)
         if (editorRef.current.innerHTML && title !== "") {
             await createPost(title, editorRef.current.innerHTML, user.username)
             toast.success("Post has been added Successfully")
@@ -41,6 +44,7 @@ const RichTextEditor = () => {
         else{
             toast.error("Content and Title Cannot be Empty")
         }
+        setLoading(false)
     };
 
     return (
@@ -157,8 +161,9 @@ const RichTextEditor = () => {
                 onClick={handleCreate}
                 variant={"dark"}
                 className="my-5 font-semibold mr-1"
+                disabled={loading}
             >
-                Create
+                {loading ? <LoadingSpinner></LoadingSpinner> : "Create Post"}
             </Button>
         </div>
     );

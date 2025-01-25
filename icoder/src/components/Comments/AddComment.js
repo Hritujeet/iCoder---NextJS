@@ -1,10 +1,11 @@
 "use client";
 import React, {useState} from "react";
-import {Input} from "./ui/input";
-import {Button, buttonVariants} from "./ui/button";
+import {Input} from "../ui/input";
+import {Button, buttonVariants} from "../ui/button";
 import {useMutation, useQueryClient} from "@tanstack/react-query";
 import {toast} from "react-toastify";
 import {SignedIn, SignedOut, SignInButton} from "@clerk/nextjs";
+import LoadingSpinner from "@/components/main/LoadingSpinner";
 
 const AddComment = ({postId}) => {
     const [comment, setcomment] = useState("");
@@ -55,8 +56,9 @@ const AddComment = ({postId}) => {
                             mutation.mutate(comment);
                         }}
                         variant={"dark"}
+                        disabled={mutation.isPending}
                     >
-                        Post
+                        {mutation.isPending ? <LoadingSpinner></LoadingSpinner> : "Post"}
                     </Button>
                 </div>
             </SignedIn>

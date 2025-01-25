@@ -1,7 +1,7 @@
 import React from "react";
 import {Post} from "@/models/post";
-import AddComment from "@/components/AddComment";
-import CommentContainer from "@/components/CommentContainer";
+import AddComment from "@/components/Comments/AddComment";
+import CommentContainer from "@/components/Comments/CommentContainer";
 
 const PostPage = async (urlParams) => {
     const {params} = await urlParams;
@@ -39,3 +39,8 @@ const PostPage = async (urlParams) => {
 };
 
 export default PostPage;
+export const metadata = {
+    title: "Read Post | iCoder",
+    description:
+        " iCoder is a blog platform built exclusively for programmers to share their knowledge and explore the world of coding. Whether you're learning or teaching, iCoder provides the perfect space to write and read blogs on programming languages, frameworks, tools, and the latest tech trends. Join the ultimate community of coders and turn your passion for coding into insightful content.",
+};

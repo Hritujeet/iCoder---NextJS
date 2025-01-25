@@ -20,10 +20,3 @@ export async function createPost(title, desc, user) {
     }
 }
 
-export async function fetchPosts() {
-    await connectDb();
-    const allPosts = await Post.find({}).sort({ createdAt: -1 });
-    return allPosts;
-}
-
-
