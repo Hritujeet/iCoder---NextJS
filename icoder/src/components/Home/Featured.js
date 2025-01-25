@@ -10,7 +10,7 @@ const Featured = () => {
         </div>
         <div className="right w-[80vw] md:w-[40vw] text-end space-y-4">
             <h1 className="text-4xl font-bold">Write blogs like never Before...</h1>
-            <p>Write blogs like never before with iCoder! Our platform is designed to elevate your blogging experience, offering an intuitive editor that makes creating content a breeze. Enjoy seamless formatting tools and customizable templates that let you focus on sharing your knowledge without the hassle of design. Highlight code snippets, embed media, and structure your content with ease to engage your readers. Whether you're writing tutorials, sharing insights, or exploring the latest tech trends, iCoder provides everything you need to craft professional, impactful blogs. Inspire, connect, and grow with a global community of coders who are as passionate as you are!</p>
+            <p>Write blogs like never before with iCoder! Our platform is designed to elevate your blogging experience, offering an intuitive editor that makes creating content a breeze. Enjoy seamless formatting tools and customizable templates that let you focus on sharing your knowledge without the hassle of design. Highlight code snippets, embed media, and structure your content with ease to engage your readers. Whether you are writing tutorials, sharing insights, or exploring the latest tech trends, iCoder provides everything you need to craft professional, impactful blogs. Inspire, connect, and grow with a global community of coders who are as passionate as you are!</p>
         </div>
     </div>
     <div className='container mx-auto flex flex-row-reverse items-center justify-evenly py-10 border-b my-10'>
