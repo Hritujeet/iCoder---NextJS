@@ -15,7 +15,9 @@ export const metadata = {
 export default function RootLayout({ children }) {
     return (
         <QueryProvider>
-            <ClerkProvider>
+            <ClerkProvider options={{
+        domain: 'i-coder-next-js.vercel.app',
+      }}>
                 <html lang="en">
                     <body>
                         <ToastContainer />
