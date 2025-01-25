@@ -2,8 +2,10 @@ import React from "react";
 import {Post} from "@/models/post";
 import AddComment from "@/components/Comments/AddComment";
 import CommentContainer from "@/components/Comments/CommentContainer";
+import {connectDb} from "@/utils/db";
 
 const PostPage = async (urlParams) => {
+    await connectDb()
     const {params} = await urlParams;
     const {slug} = await params
     const myPost = await Post.findOne({slug: slug});
