@@ -19,13 +19,6 @@ const Footer = () => {
         { icon: Mail, href: "#", label: "Email" },
     ];
 
-    const quickLinks = [
-        { href: "/privacy", label: "Privacy Policy" },
-        { href: "/terms", label: "Terms of Service" },
-        { href: "/sitemap", label: "Sitemap" },
-        { href: "/rss", label: "RSS Feed" },
-    ];
-
     return (
         <footer className="relative bg-gradient-to-br from-slate-900 via-zinc-900 to-slate-900 text-white mt-20">
             {/* Decorative top border */}
@@ -66,24 +59,6 @@ const Footer = () => {
                         <h3 className="text-xl font-semibold mb-6 text-white">Navigation</h3>
                         <ul className="space-y-3">
                             {navigationLinks.map((link, index) => (
-                                <li key={index}>
-                                    <Link
-                                        href={link.href}
-                                        className="text-gray-300 hover:text-white hover:translate-x-2 transition-all duration-200 flex items-center group"
-                                    >
-                                        <span className="w-0 group-hover:w-2 h-0.5 bg-gradient-to-r from-blue-500 to-purple-500 transition-all duration-200 mr-0 group-hover:mr-3"></span>
-                                        {link.label}
-                                    </Link>
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
-
-                    {/* Quick Links */}
-                    <div>
-                        <h3 className="text-xl font-semibold mb-6 text-white">Quick Links</h3>
-                        <ul className="space-y-3">
-                            {quickLinks.map((link, index) => (
                                 <li key={index}>
                                     <Link
                                         href={link.href}

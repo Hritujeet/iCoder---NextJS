@@ -81,7 +81,7 @@ const ContactComponent = () => {
                                             </div>
                                             <h3 className="text-white font-semibold text-lg">Email</h3>
                                         </div>
-                                        <p className="text-blue-100 ml-16">sharmahritujeet@gmail.com</p>
+                                        <p className="text-blue-100 md:ml-16">sharmahritujeet@gmail.com</p>
                                     </div>
 
                                     <Link 
@@ -94,7 +94,7 @@ const ContactComponent = () => {
                                             </div>
                                             <h3 className="text-white font-semibold text-lg">Instagram</h3>
                                         </div>
-                                        <p className="text-blue-100 ml-16">@hritujeet</p>
+                                        <p className="text-blue-100 md:ml-16">@hritujeet</p>
                                     </Link>
 
                                     <Link 
@@ -107,7 +107,7 @@ const ContactComponent = () => {
                                             </div>
                                             <h3 className="text-white font-semibold text-lg">GitHub</h3>
                                         </div>
-                                        <p className="text-blue-100 ml-16">@Hritujeet</p>
+                                        <p className="text-blue-100 md:ml-16">@Hritujeet</p>
                                     </Link>
                                 </div>
                             </div>

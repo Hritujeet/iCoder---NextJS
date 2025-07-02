@@ -97,24 +97,6 @@ const Hero = ({ user }) => {
                                 </Link>
                             </Button>
                         </div>
-
-                        {/* Stats */}
-                        <div className="grid grid-cols-3 gap-8 pt-8">
-                            {stats.map((stat, index) => (
-                                <div 
-                                    key={index} 
-                                    className={`text-center transition-all duration-1000 delay-${index * 200} ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
-                                >
-                                    <div className="flex justify-center mb-2">
-                                        <div className="p-3 bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-lg border border-blue-500/30">
-                                            <stat.icon className="h-6 w-6 text-blue-400" />
-                                        </div>
-                                    </div>
-                                    <div className="text-2xl font-bold text-white">{stat.value}</div>
-                                    <div className="text-sm text-gray-400">{stat.label}</div>
-                                </div>
-                            ))}
-                        </div>
                     </div>
 
                     {/* Right Content - Enhanced Image Section */}
@@ -142,14 +124,6 @@ const Hero = ({ user }) => {
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-
-                {/* Scroll Indicator */}
-                <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center space-y-2 text-gray-400">
-                    <span className="text-sm">Scroll to explore</span>
-                    <div className="w-6 h-10 border-2 border-gray-400 rounded-full flex justify-center">
-                        <div className="w-1 h-3 bg-gray-400 rounded-full animate-bounce mt-2"></div>
                     </div>
                 </div>
             </div>

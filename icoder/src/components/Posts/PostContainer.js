@@ -22,7 +22,6 @@ const PostContainer = () => {
                         <PostCard
                             key={post.slug}
                             title={post.title}
-                            description={post.desc}
                             username={post.user}
                             slug={post.slug}
                             coverImg={post.coverImg}
