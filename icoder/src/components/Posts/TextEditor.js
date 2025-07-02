@@ -11,6 +11,7 @@ import {
     ListIcon,
     ListOrdered,
     Underline,
+    Image as ImageIcon,
 } from "lucide-react";
 import {
     DropdownMenu,
@@ -26,51 +27,67 @@ import LoadingSpinner from "@/components/main/LoadingSpinner";
 
 const RichTextEditor = () => {
     const editorRef = useRef();
-    const [title, settitle] = useState("")
-    const [loading, setLoading] = useState(false)
-    const {user} = useUser();
+    const [title, settitle] = useState("");
+    const [coverImg, setCoverImg] = useState("");
+    const [loading, setLoading] = useState(false);
+    const { user } = useUser();
 
     const execCommand = (command, value = null) => {
         document.execCommand(command, false, value);
     };
     const handleCreate = async () => {
-        setLoading(true)
+        setLoading(true);
         if (editorRef.current.innerHTML && title !== "") {
-            await createPost(title, editorRef.current.innerHTML, user.username)
-            toast.success("Post has been added Successfully")
-            settitle("")
-            editorRef.current.innerHTML = ""
+            await createPost(title, editorRef.current.innerHTML, user.username, coverImg);
+            toast.success("Post has been added Successfully");
+            settitle("");
+            setCoverImg("");
+            editorRef.current.innerHTML = "";
+        } else {
+            toast.error("Content and Title Cannot be Empty");
         }
-        else{
-            toast.error("Content and Title Cannot be Empty")
-        }
-        setLoading(false)
+        setLoading(false);
+    };
+
+    // Handle cover image input
+    const handleCoverImgChange = (e) => {
+        setCoverImg(e.target.value);
     };
 
     return (
-        <div className="p-6 max-w-3xl mx-auto space-y-4">
+        <div className="max-w-3xl mx-auto bg-white rounded-2xl shadow-lg p-8 space-y-6">
             <div className="w-full space-y-2">
-                <label
-                    htmlFor="title"
-                    className="font-sembold text-lg cursor-pointer"
-                >
+                <label htmlFor="title" className="font-semibold text-lg cursor-pointer">
                     What Should We Call Your Blog?
                 </label>
                 <Input
                     value={title}
-                    onChange={(e)=>{
-                        settitle(e.target.value)
-                    }}
+                    onChange={(e) => settitle(e.target.value)}
                     id="title"
                     type="text"
                     placeholder="Blog Title"
                 />
             </div>
-            <div className="mb-4 bg-zinc-100 border border-gray-300 rounded-md p-2 flex justify-center items-center flex-wrap gap-2">
+            <div className="w-full space-y-2">
+                <label htmlFor="coverImg" className="font-semibold text-lg cursor-pointer">
+                    Cover Image URL (optional)
+                </label>
+                <div className="flex gap-2 items-center">
+                    <Input
+                        value={coverImg}
+                        onChange={handleCoverImgChange}
+                        id="coverImg"
+                        type="text"
+                        placeholder="Paste an image URL for your blog cover"
+                    />
+                    <ImageIcon className="h-5 w-5 text-zinc-400" />
+                </div>
+            </div>
+            <div className="mb-4 bg-zinc-100 border border-gray-200 rounded-lg p-3 flex flex-wrap gap-2 items-center shadow-sm">
                 <DropdownMenu>
                     <DropdownMenuTrigger asChild>
-                        <Button variant={"dark"}>
-                            <Heading></Heading> Headings
+                        <Button variant={"dark"} size="sm" title="Headings">
+                            <Heading className="mr-1" /> Headings
                         </Button>
                     </DropdownMenuTrigger>
                     <DropdownMenuContent>
@@ -79,9 +96,9 @@ const RichTextEditor = () => {
                                 variant={"dark"}
                                 size={"sm"}
                                 onClick={() => execCommand("formatBlock", "h1")}
-                                aria-label="Toggle italic"
+                                title="Heading 1"
                             >
-                                <Heading1 className="h-4 w-4" />
+                                <Heading1 className="h-4 w-4 mr-1" />
                                 <span>Heading 1</span>
                             </Button>
                         </DropdownMenuItem>
@@ -90,9 +107,9 @@ const RichTextEditor = () => {
                                 variant={"dark"}
                                 size={"sm"}
                                 onClick={() => execCommand("formatBlock", "h2")}
-                                aria-label="Toggle italic"
+                                title="Heading 2"
                             >
-                                <Heading2 className="h-4 w-4" />
+                                <Heading2 className="h-4 w-4 mr-1" />
                                 <span>Heading 2</span>
                             </Button>
                         </DropdownMenuItem>
@@ -101,69 +118,39 @@ const RichTextEditor = () => {
                                 variant={"dark"}
                                 size={"sm"}
                                 onClick={() => execCommand("formatBlock", "h3")}
-                                aria-label="Toggle italic"
+                                title="Heading 3"
                             >
-                                <Heading3 className="h-4 w-4" />
+                                <Heading3 className="h-4 w-4 mr-1" />
                                 <span>Heading 3</span>
                             </Button>
                         </DropdownMenuItem>
                     </DropdownMenuContent>
                 </DropdownMenu>
-                <Button
-                    variant={"dark"}
-                    size={"sm"}
-                    onClick={() => execCommand("bold")}
-                    aria-label="Toggle italic"
-                >
-                    <Bold className="h-4 w-4" />
-                </Button>
-                <Button
-                    variant={"dark"}
-                    size={"sm"}
-                    onClick={() => execCommand("italics")}
-                    aria-label="Toggle italic"
-                >
-                    <Italic className="h-4 w-4" />
-                </Button>
-                <Button
-                    variant={"dark"}
-                    size={"sm"}
-                    onClick={() => execCommand("underline")}
-                    aria-label="Toggle italic"
-                >
-                    <Underline className="h-4 w-4" />
-                </Button>
-                <Button
-                    variant={"dark"}
-                    size={"sm"}
-                    onClick={() => execCommand("insertOrderedList")}
-                    aria-label="Toggle italic"
-                >
-                    <ListOrdered className="h-4 w-4" />
-                </Button>
-                <Button
-                    variant={"dark"}
-                    size={"sm"}
-                    onClick={() => execCommand("insertUnorderedList")}
-                    aria-label="Toggle italic"
-                >
-                    <ListIcon className="h-4 w-4" />
-                </Button>
+                <Button variant={"dark"} size="sm" onClick={() => execCommand("bold")}
+                        title="Bold"><Bold className="h-4 w-4" /></Button>
+                <Button variant={"dark"} size="sm" onClick={() => execCommand("italic")}
+                        title="Italic"><Italic className="h-4 w-4" /></Button>
+                <Button variant={"dark"} size="sm" onClick={() => execCommand("underline")}
+                        title="Underline"><Underline className="h-4 w-4" /></Button>
+                <Button variant={"dark"} size="sm" onClick={() => execCommand("insertOrderedList")}
+                        title="Numbered List"><ListOrdered className="h-4 w-4" /></Button>
+                <Button variant={"dark"} size="sm" onClick={() => execCommand("insertUnorderedList")}
+                        title="Bullet List"><ListIcon className="h-4 w-4" /></Button>
             </div>
-
             <div
                 ref={editorRef}
                 contentEditable
-                className="min-h-[300px] border border-gray-300 rounded-md bg-white p-4 text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-400 overflow-auto"
+                className="min-h-[300px] border border-gray-300 rounded-lg bg-zinc-50 p-4 text-gray-800 focus:outline-none focus:ring-2 focus:ring-indigo-400 transition-shadow placeholder:text-gray-400"
+                data-placeholder="Write your blog content here..."
+                aria-label="Blog Content Editor"
             ></div>
-
             <Button
                 onClick={handleCreate}
                 variant={"dark"}
-                className="my-5 font-semibold mr-1"
+                className="my-5 font-semibold w-full py-3 text-lg"
                 disabled={loading}
             >
-                {loading ? <LoadingSpinner></LoadingSpinner> : "Create Post"}
+                {loading ? <LoadingSpinner /> : "Create Post"}
             </Button>
         </div>
     );

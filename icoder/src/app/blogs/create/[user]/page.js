@@ -3,37 +3,36 @@ import TextEditor from "@/components/Posts/TextEditor";
 import {auth} from "@clerk/nextjs/server";
 import {SignInButton} from "@clerk/nextjs";
 import {buttonVariants} from "@/components/ui/button";
+import { Pencil } from "lucide-react";
 
 const Page = async () => {
-    const a = await auth()
+    const a = await auth();
     return (
-        <div className="w-[80vw] mx-auto">
-            <h1 className="text-3xl md:text-4xl font-bold my-10 text-center">
-                iCoder - Share Your Thoughts with the World
-            </h1>
-            {a.sessionId && <>
-                <ul
-                    className={
-                        "mx-auto space-y-2 flex justify-center items-start flex-col w-[80vw] md:w-[50vw] text-zinc-500"
-                    }
-                >
-                    <li>The modes likheading, bold, etc. are applicable for the whole line. They cannot be untoggled by
-                        re-clicking them. They get untoggled by defualt on going to a new line.
-                    </li>
-                    <li>Some Features may not be there. They will rolled out in future.</li>
-                </ul>
-                <div className="w-[90vw] md:w-[60vw] mx-auto my-5 space-y-4">
-                    <TextEditor></TextEditor>
+        <main className="bg-gray-50 min-h-screen">
+            {/* Hero/Intro Section */}
+            <section className="w-full bg-gradient-to-br from-indigo-700 via-indigo-500 to-purple-400 h-[32vh] flex flex-col justify-center items-center relative overflow-hidden mb-10">
+                <div className="relative z-10 flex flex-col items-center justify-center h-full w-full px-4">
+                    <Pencil className="w-12 h-12 text-white mb-2" />
+                    <h1 className="text-center text-4xl md:text-5xl font-extrabold text-white drop-shadow-lg mb-2">Craft a Blog</h1>
+                    <p className="text-center text-lg md:text-xl text-indigo-100 max-w-2xl">Share your thoughts, tutorials, and stories with the iCoder community. Use the editor below to create a beautiful blog post!</p>
                 </div>
-            </>}
-            {!a.sessionId && <>
-                <div
-                    className="container flex-col flex gap-4 mx-auto my-5 justify-center items-center px-6 text-lg font-semibold">
-                    <span>You need to login to be able to Add Blog Posts</span>
-                    <SignInButton className={buttonVariants({variant: "dark"})}></SignInButton>
-                </div>
-            </>}
-        </div>
+            </section>
+            <div className="max-w-3xl mx-auto px-4">
+                {a.sessionId && <>
+                    <ul className="mx-auto space-y-2 flex justify-center items-start flex-col w-full text-zinc-500 mb-6">
+                        <li>The modes like heading, bold, etc. are applicable for the whole line. They cannot be untoggled by re-clicking them. They get untoggled by default on going to a new line.</li>
+                        <li>Some features may not be there. They will be rolled out in future updates.</li>
+                    </ul>
+                    <TextEditor />
+                </>}
+                {!a.sessionId && <>
+                    <div className="flex flex-col gap-4 mx-auto my-10 justify-center items-center px-6 py-10 bg-white rounded-2xl shadow-lg max-w-xl">
+                        <span className="text-lg font-semibold text-zinc-700">You need to login to be able to add blog posts</span>
+                        <SignInButton className={buttonVariants({variant: "dark"})}></SignInButton>
+                    </div>
+                </>}
+            </div>
+        </main>
     );
 };
 
