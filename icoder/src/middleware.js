@@ -8,7 +8,7 @@ export const onRequest = clerkMiddleware((auth, context) => {
     console.log(isProtectedRoute())
 
     if (!userId && isProtectedRoute) {
-        return redirectToSignIn()
+        return redirectToSignIn({ returnBackUrl: '/sign-in' })
     }
 })
 

@@ -7,17 +7,19 @@ import PostContainer from "@/components/Posts/PostContainer";
 const Blogs = async () => {
     const a = await auth()
     return (
-        <section className="flex flex-col justify-center items-center">
-            <div
-                className="text-white px-10 w-full mb-10 bg-zinc-900 h-[40vh] flex flex-col justify-center items-center">
-                <h1 className="text-center my-5 texttext-3xl md:text-5xl font-bold">Read Programming Blogs</h1>
-                {a.sessionId &&
-                    <Link href={`/blogs/create/${a.sessionId}`}><Button size={"lg"} className={"font-semibold text-lg"}>Craft
-                        a
-                        Blog</Button></Link>}
-            </div>
-            <PostContainer></PostContainer>
-        </section>
+        <main className="bg-gray-50 min-h-screen">
+            {/* Hero Section */}
+            <section className="w-full mb-12 bg-gradient-to-br from-indigo-700 via-indigo-500 to-purple-400 h-[38vh] flex flex-col justify-center items-center relative overflow-hidden">
+                <div className="absolute inset-0 opacity-10 bg-[url('https://images.pexels.com/photos/1181675/pexels-photo-1181675.jpeg?auto=compress&w=800&q=80')] bg-cover bg-center" />
+                <div className="relative z-10 flex flex-col items-center justify-center h-full w-full px-4">
+                    <h1 className="text-center my-3 text-4xl md:text-5xl font-extrabold text-white drop-shadow-lg">Read Programming Blogs</h1>
+                    <p className="text-center text-lg md:text-xl text-indigo-100 mb-6 max-w-2xl">Explore insightful articles, tutorials, and stories from the coding community. Learn, share, and grow with iCoder.</p>
+                    {a.sessionId &&
+                        <Link href={`/blogs/create/${a.sessionId}`}><Button size={"lg"} className={"font-semibold text-lg bg-white text-indigo-700 hover:bg-indigo-100 shadow"}>Craft a Blog</Button></Link>}
+                </div>
+            </section>
+            <PostContainer />
+        </main>
     )
 }
 

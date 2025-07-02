@@ -17,11 +17,13 @@ export default function RootLayout({children}) {
         <QueryProvider>
             <ClerkProvider publishableKey={process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY} options={{
                 domain: 'i-coder-next-js.vercel.app',
+                signInUrl: '/sign-in',
+                signUpUrl: '/sign-up',
             }}>
                 <html lang="en">
                 <body>
                 <ToastContainer/>
-                <NextTopLoader color={"#6D5ACF"}/>
+                <NextTopLoader color={"red"} showSpinner={false} height={1}/>
                 <Navbar></Navbar>
                 {children}
                 <Footer></Footer>
