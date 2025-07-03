@@ -15,30 +15,32 @@ const PostPage = async (urlParams) => {
     return (
         <main className="bg-gray-50 min-h-screen">
             {/* Hero Section */}
-            <section className="relative w-full h-[38vh] flex items-center justify-center mb-10 overflow-hidden">
-                <Image src={coverImg} alt={myPost.title} fill priority className="object-cover w-full h-full absolute inset-0 z-0" />
-                <div className="absolute inset-0 bg-gradient-to-b from-zinc-900/80 to-zinc-900/60 z-10" />
+            <section className="relative w-full h-[38vh] md:h-[48vh] flex items-center justify-center mb-10 overflow-hidden">
+                <Image src={coverImg} alt={myPost.title} fill priority className="object-cover w-full h-full absolute inset-0 z-0 scale-105 blur-[1.5px] md:blur-none transition-all duration-300" />
+                <div className="absolute inset-0 bg-gradient-to-b from-zinc-900/90 to-zinc-900/60 z-10" />
                 <div className="relative z-20 flex flex-col items-center justify-center w-full h-full px-4">
-                    <h1 className="text-center text-4xl md:text-5xl font-extrabold text-white drop-shadow-lg mb-2">{myPost.title}</h1>
-                    <p className="text-zinc-200 text-lg font-semibold">By @{myPost.user}</p>
+                    <h1 className="text-center text-3xl md:text-5xl font-extrabold text-white drop-shadow-lg mb-2 leading-tight md:leading-snug">
+                        {myPost.title}
+                    </h1>
+                    <p className="text-zinc-200 text-base md:text-lg font-semibold">By @{myPost.user}</p>
                 </div>
             </section>
 
             {/* Content Section */}
-            <section className="max-w-3xl mx-auto px-4">
-                <div className="bg-white rounded-2xl shadow-lg p-8 mb-12">
+            <section className="max-w-3xl mx-auto px-2 sm:px-4 md:px-8">
+                <div className="bg-white rounded-2xl shadow-xl border border-zinc-100 p-4 sm:p-8 mb-12 transition-shadow hover:shadow-2xl">
                     <div className="prose prose-lg max-w-none text-gray-800 blog-content" dangerouslySetInnerHTML={{__html: myPost.desc}} />
                 </div>
             </section>
 
             {/* Comments Section */}
-            <section className="max-w-3xl mx-auto px-4 mb-16">
-                <div className="bg-white rounded-2xl shadow p-6 mb-8">
-                    <h2 className="text-2xl font-bold mb-4 text-indigo-700">Share Your Thoughts</h2>
+            <section className="max-w-3xl mx-auto px-2 sm:px-4 md:px-8 mb-16">
+                <div className="bg-white rounded-2xl shadow-md border border-zinc-100 p-4 sm:p-6 mb-8 transition-shadow hover:shadow-lg">
+                    <h2 className="text-xl md:text-2xl font-bold mb-4 text-indigo-700">Share Your Thoughts</h2>
                     <AddComment postId={myPost.id} />
                 </div>
-                <div className="bg-white rounded-2xl shadow p-6">
-                    <h2 className="text-2xl font-bold mb-4 text-indigo-700">Comments for {myPost.title}</h2>
+                <div className="bg-white rounded-2xl shadow-md border border-zinc-100 p-4 sm:p-6">
+                    <h2 className="text-xl md:text-2xl font-bold mb-4 text-indigo-700">Comments for {myPost.title}</h2>
                     <CommentContainer postId={myPost.id} />
                 </div>
             </section>
